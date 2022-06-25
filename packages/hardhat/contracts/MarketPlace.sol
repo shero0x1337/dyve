@@ -11,7 +11,7 @@ contract Marketplace {
 
 
     /**
-    * @dev short a listed NFT by it's hash
+    * @dev sell any nft 
      */
     function sellNFT(address _nft, uint _id, address _token, uint tokenAmount) external {
         IERC721(_nft).transferFrom(msg.sender, address(this), _id);
