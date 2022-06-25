@@ -66,7 +66,7 @@ const STARTING_JSON = {
   description: "It's actually a bison?",
   external_url: "https://austingriffith.com/portfolio/paintings/", // <-- this can link to a page for the specific file too
   image: "https://austingriffith.com/images/paintings/buffalo.jpg",
-  name: "Buffalo",
+  name: "BAYC",
   attributes: [
     {
       trait_type: "BackgroundColor",
@@ -520,10 +520,10 @@ function App(props) {
   // the json for the nfts
   const json = {
     1: {
-      description: "It's actually a bison?",
+      description: "The Bored Apes Yacht Club",
       external_url: "https://austingriffith.com/portfolio/paintings/", // <-- this can link to a page for the specific file too
-      image: "https://austingriffith.com/images/paintings/buffalo.jpg",
-      name: "Buffalo",
+      image: "bayv.png",
+      name: "BAYC",
       attributes: [
         {
           trait_type: "BackgroundColor",
@@ -540,10 +540,10 @@ function App(props) {
       ],
     },
     2: {
-      description: "What is it so worried about?",
+      description: "Azuki NFT Collection",
       external_url: "https://austingriffith.com/portfolio/paintings/", // <-- this can link to a page for the specific file too
-      image: "https://austingriffith.com/images/paintings/zebra.jpg",
-      name: "Zebra",
+      image: "azuki.svg",
+      name: "Azuki",
       attributes: [
         {
           trait_type: "BackgroundColor",
@@ -733,12 +733,8 @@ function App(props) {
               <Button
                 shape="round"
                 size="large"
-                onClick={() => {
-                  setRoute("/transfers");
-                }}
                 style={{height:'100px', width:'400px', alignItems: 'center'}}
-                href="/transfers"
-                // type="link"
+                href="/collections"
                 >
                   <span style={{ marginRight: 8 }} role="img" aria-label="LEND!">
                 💰
@@ -765,6 +761,9 @@ function App(props) {
           </Route>
 
           <Route path="/transfers">
+
+
+
             <div style={{ width: 600, margin: "auto", marginTop: 32, paddingBottom: 32 }}>
               <List
                 bordered
@@ -780,6 +779,78 @@ function App(props) {
                 }}
               />
             </div>
+          </Route>
+
+          <Route path="/collections">
+          <div style={{ width: 640, margin: "auto", marginTop: 32, paddingBottom: 32 }}>
+              <List
+                bordered
+                dataSource={yourCollectibles}
+                renderItem={item => {
+                  const id = item.id.toNumber();
+                  return (
+                    <List.Item key={id + "_" + item.uri + "_" + item.owner}>
+                      <Card
+                        title={
+                          <div>
+                            {item.name}
+                          </div>
+                        }
+                      >
+                        <div>
+                          <img src={item.image} style={{ maxWidth: 150 }} />
+                        </div>
+                        <div>{item.description}</div>
+                      </Card>
+
+                      <div>
+                        <Button
+                          href="/collection_details"
+                        >
+                          Explore Collection
+                        </Button>
+                      </div>
+                    </List.Item>
+                  );
+                }}
+              />
+            </div>
+          
+          </Route>
+
+          <Route path="/collection_details">
+          <div style={{ width: 640, margin: "auto", marginTop: 32, paddingBottom: 32 }}>
+              <List
+                bordered
+                dataSource={yourCollectibles}
+                renderItem={item => {
+                  const id = item.id.toNumber();
+                  return (
+                    <List.Item key={id + "_" + item.uri + "_" + item.owner}>
+                      <Card
+                        title={
+                          <div>
+                            {item.name}
+                          </div>
+                        }
+                      >
+                        <div>
+                          <img src={item.image} style={{ maxWidth: 150 }} />
+                        </div>
+                        <div>{item.description}</div>
+                      </Card>
+
+                      <div>
+                        <Button danger>
+                          Short
+                        </Button>
+                      </div>
+                    </List.Item>
+                  );
+                }}
+              />
+            </div>
+          
           </Route>
 
           <Route path="/ipfsup">
