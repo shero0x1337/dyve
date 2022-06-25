@@ -1,6 +1,6 @@
 import Portis from "@portis/web3";
 import WalletConnectProvider from "@walletconnect/web3-provider";
-import { Alert, Button, Card, Col, Input, List, Menu, Row } from "antd";
+import { Alert, Button, LinkButton, Card, Col, Input, List, Menu, Row } from "antd";
 import "antd/dist/antd.css";
 import Authereum from "authereum";
 import {
@@ -479,32 +479,33 @@ function App(props) {
   let faucetHint = "";
   const faucetAvailable = localProvider && localProvider.connection && targetNetwork.name.indexOf("local") !== -1;
 
-  const [faucetClicked, setFaucetClicked] = useState(false);
-  if (
-    !faucetClicked &&
-    localProvider &&
-    localProvider._network &&
-    localProvider._network.chainId == 31337 &&
-    yourLocalBalance &&
-    ethers.utils.formatEther(yourLocalBalance) <= 0
-  ) {
-    faucetHint = (
-      <div style={{ padding: 16 }}>
-        <Button
-          type="primary"
-          onClick={() => {
-            faucetTx({
-              to: address,
-              value: ethers.utils.parseEther("0.01"),
-            });
-            setFaucetClicked(true);
-          }}
-        >
-          💰 Grab funds from the faucet ⛽️
-        </Button>
-      </div>
-    );
-  }
+  // const [faucetClicked, setFaucetClicked] = useState(false);
+  // if (
+  //   !faucetClicked &&
+  //   localProvider &&
+  //   localProvider._network &&
+  //   localProvider._network.chainId == 31337 &&
+  //   yourLocalBalance &&
+  //   ethers.utils.formatEther(yourLocalBalance) <= 0
+  // ) {
+  //   // faucetHint = (
+  //   //   return;
+  //   //   // <div style={{ padding: 16 }}>
+  //   //   //   <Button
+  //   //   //     type="primary"
+  //   //   //     onClick={() => {
+  //   //   //       faucetTx({
+  //   //   //         to: address,
+  //   //   //         value: ethers.utils.parseEther("0.01"),
+  //   //   //       });
+  //   //   //       setFaucetClicked(true);
+  //   //   //     }}
+  //   //   //   >
+  //   //   //     💰 Grab funds from the faucet ⛽️
+  //   //   //   </Button>
+  //   //   // </div>
+  //   // );
+  // }
 
   const [yourJSON, setYourJSON] = useState(STARTING_JSON);
   const [sending, setSending] = useState();
@@ -674,17 +675,17 @@ function App(props) {
       {networkDisplay}
       <BrowserRouter>
         <Menu style={{ textAlign: "center" }} selectedKeys={[route]} mode="horizontal">
-          <Menu.Item key="/">
+          {/* <Menu.Item key="/">
             <Link
               onClick={() => {
                 setRoute("/");
               }}
               to="/"
             >
-              YourCollectibles
+              Home
             </Link>
-          </Menu.Item>
-          <Menu.Item key="/transfers">
+          </Menu.Item> */}
+          {/* <Menu.Item key="/transfers">
             <Link
               onClick={() => {
                 setRoute("/transfers");
@@ -693,7 +694,8 @@ function App(props) {
             >
               Transfers
             </Link>
-          </Menu.Item>
+          </Menu.Item> */}
+          {/*
           <Menu.Item key="/ipfsup">
             <Link
               onClick={() => {
@@ -723,74 +725,42 @@ function App(props) {
             >
               Debug Contracts
             </Link>
-          </Menu.Item>
+          </Menu.Item> */}
         </Menu>
         <Switch>
           <Route exact path="/">
-            <div style={{ width: 640, margin: "auto", marginTop: 32, paddingBottom: 32 }}>
+            <div style={{ width: 640, margin: "auto", marginTop: 200, paddingBottom: 32 }}>
               <Button
+                shape="round"
+                size="large"
+                onClick={() => {
+                  setRoute("/transfers");
+                }}
+                style={{height:'100px', width:'400px', alignItems: 'center'}}
+                href="/transfers"
+                // type="link"
+                >
+                  <span style={{ marginRight: 8 }} role="img" aria-label="LEND!">
+                💰
+              </span>
+                LEND & EARN
+              </Button>
+            </div>
+            <div style={{ width: 640, margin: "auto", marginTop: 32, paddingBottom: 32 }}>
+            <Button
                 disabled={minting}
                 shape="round"
                 size="large"
+                style={{height:'100px',width:'400px'}}
                 onClick={() => {
                   mintItem();
                 }}
               >
-                MINT NFT
+                    <span style={{ marginRight: 8 }} role="img" aria-label="Borrow">
+                    📉
+              </span>
+                SHORT
               </Button>
-            </div>
-            <div style={{ width: 640, margin: "auto", marginTop: 32, paddingBottom: 32 }}>
-              <List
-                bordered
-                dataSource={yourCollectibles}
-                renderItem={item => {
-                  const id = item.id.toNumber();
-                  return (
-                    <List.Item key={id + "_" + item.uri + "_" + item.owner}>
-                      <Card
-                        title={
-                          <div>
-                            <span style={{ fontSize: 16, marginRight: 8 }}>#{id}</span> {item.name}
-                          </div>
-                        }
-                      >
-                        <div>
-                          <img src={item.image} style={{ maxWidth: 150 }} />
-                        </div>
-                        <div>{item.description}</div>
-                      </Card>
-
-                      <div>
-                        owner:{" "}
-                        <Address
-                          address={item.owner}
-                          ensProvider={mainnetProvider}
-                          blockExplorer={blockExplorer}
-                          fontSize={16}
-                        />
-                        <AddressInput
-                          ensProvider={mainnetProvider}
-                          placeholder="transfer to address"
-                          value={transferToAddresses[id]}
-                          onChange={newValue => {
-                            const update = {};
-                            update[id] = newValue;
-                            setTransferToAddresses({ ...transferToAddresses, ...update });
-                          }}
-                        />
-                        <Button
-                          onClick={() => {
-                            console.log("writeContracts", writeContracts);
-                            tx(writeContracts.YourCollectible.transferFrom(address, transferToAddresses[id], id));
-                          }}
-                        >
-                          Transfer
-                        </Button>
-                      </div>
-                    </List.Item>
-                  );
-                }}
-              />
             </div>
           </Route>
 
@@ -920,15 +890,15 @@ function App(props) {
       {/* 🗺 Extra UI like gas price, eth price, faucet, and support: */}
       <div style={{ position: "fixed", textAlign: "left", left: 0, bottom: 20, padding: 10 }}>
         <Row align="middle" gutter={[4, 4]}>
-          <Col span={8}>
+          {/* <Col span={8}>
             <Ramp price={price} address={address} networks={NETWORKS} />
-          </Col>
+          </Col> */}
 
-          <Col span={8} style={{ textAlign: "center", opacity: 0.8 }}>
+          {/* <Col span={8} style={{ textAlign: "center", opacity: 0.8 }}>
             <GasGauge gasPrice={gasPrice} />
-          </Col>
+          </Col> */}
           <Col span={8} style={{ textAlign: "center", opacity: 1 }}>
-            <Button
+            {/* <Button
               onClick={() => {
                 window.open("https://t.me/joinchat/KByvmRe5wkR-8F_zz6AjpA");
               }}
@@ -939,7 +909,7 @@ function App(props) {
                 💬
               </span>
               Support
-            </Button>
+            </Button> */}
           </Col>
         </Row>
 
