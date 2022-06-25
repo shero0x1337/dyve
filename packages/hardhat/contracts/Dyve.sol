@@ -11,6 +11,9 @@ contract Dyve is IDyve, ERC721{
     using Orders for Orders.Order;
     
     mapping(bytes32 => Orders.Order) public orderLookup;
+    mapping(address => bytes32[]) public ordersByCollection;
+    mapping(address => bytes32[]) public ordersByLender;
+
     IERC20 public token;
 
     constructor(IERC20 _token) ERC721("DYVE Short Position", "DYVE"){
@@ -40,6 +43,8 @@ contract Dyve is IDyve, ERC721{
         order._beforeNewOrder();
 
         orderLookup[hash] = order;
+        ordersByCollection[collection].push(hash);
+        ordersByLender[msg.sender].push(hash);
     }
 
     /**
