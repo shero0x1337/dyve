@@ -4,11 +4,7 @@ pragma solidity ^0.8.2;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-import "./IDyve.sol";
-import "./Orders.sol";
-
 contract Marketplace {
-
 
     /**
     * @dev sell any nft 
