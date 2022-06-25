@@ -20,9 +20,10 @@ interface IDyve is IERC721{
 
     /**
     * @dev close an active short position
+    * @param _id is the id of the new NFT from the same collection to trade back in
      */
-    function close(bytes32 _hash) external;
-
+    function close(bytes32 _hash, uint _id) external;
+    
     /**
     * @dev cancel an active listing that is NOT yet shorted
      */

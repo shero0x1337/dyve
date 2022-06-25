@@ -58,8 +58,17 @@ contract Dyve is IDyve, ERC721{
 
     /**
     * @dev close an active short position
+    * @param _id is the id of the new NFT from the same collection to trade back in
      */
-    function close(bytes32 _hash) external override{
+    function close(bytes32 _hash, uint _id) external override{
+        Orders.Order storage order = orderLookup[_hash];
+        if(order.endTimestamp < block.timestamp){
+            token.transfer(order.maker, order.reqCollateral);
+        }else{
+            require(msg.sender == ownerOf(uint256(_hash)), "Must be the owner of the short position to close");
+            IERC721(order.collection).transferFrom(msg.sender, order.maker, _id);
+        }
+        _burn(uint256(_hash));
 
     }
 
