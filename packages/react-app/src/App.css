@@ -54,3 +54,11 @@ body {
 #shortTable th {
   padding: 20px;
 }
+
+#lendDiv > div {
+  padding: 20px;
+}
+/* 
+#lendDiv div.ant-slider {
+  padding: 0px !important;
+} */
