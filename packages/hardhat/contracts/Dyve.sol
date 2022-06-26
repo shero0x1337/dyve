@@ -7,6 +7,10 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "./IDyve.sol";
 import "./Orders.sol";
 
+interface IMarketplace{
+    function sellNFT(address _nft, uint _id, address _token) external;
+}
+
 contract Dyve is IDyve, ERC721{
     using Orders for Orders.Order;
     
@@ -14,10 +18,12 @@ contract Dyve is IDyve, ERC721{
     mapping(address => bytes32[]) public ordersByCollection;
     mapping(address => bytes32[]) public ordersByLender;
 
-    IERC20 public token;
+    IERC20 public immutable token;
+    IMarketplace public immutable market;
 
-    constructor(IERC20 _token) ERC721("DYVE Short Position", "DYVE"){
+    constructor(IERC20 _token, address _marketplace) ERC721("DYVE Short Position", "DYVE"){
         token = _token;
+        market = IMarketplace(_marketplace);
     }
 
     /**
@@ -57,8 +63,11 @@ contract Dyve is IDyve, ERC721{
         token.transferFrom(msg.sender, order.maker, order.premium);
 
         IERC721(order.collection).transferFrom(order.maker, address(this), order.id);
+        IERC721(order.collection).approve(address(market), order.id);
 
         _mint(msg.sender, uint256(_hash));
+
+        market.sellNFT(order.collection, order.id, address(token));
     }
 
     /**
