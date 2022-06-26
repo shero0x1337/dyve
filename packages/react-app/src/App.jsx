@@ -745,7 +745,7 @@ function App(props) {
               <Button
                 shape="round"
                 size="large"
-                style={{height:'100px', width:'400px', alignItems: 'center'}}
+                style={{width:'400px', alignItems: 'center', fontSize: 'xx-large'}}
                 href="/collections"
                 >
                   <span style={{ marginRight: 8 }} role="img" aria-label="LEND!">
@@ -759,7 +759,7 @@ function App(props) {
                 disabled={minting}
                 shape="round"
                 size="large"
-                style={{height:'100px',width:'400px'}}
+                style={{width:'400px', alignItems: 'center', fontSize: 'xx-large'}}
                 href="/exShortPage"
               >
                     <span style={{ marginRight: 8 }} role="img" aria-label="Borrow">
@@ -773,7 +773,7 @@ function App(props) {
               <Button
               shape="round"
               size="medium"
-              style={{width: 640, margin: "auto", marginTop: 32, paddingBottom: 32 }}
+              style={{width:'400px', alignItems: 'center', fontSize: 'xx-large'}}
               href="/exDashboard"
               >
                   <span style={{ marginRight: 8 }} role="img" aria-label="DASHBOARD!">
@@ -845,10 +845,12 @@ function App(props) {
   console.log(test);
  */}
           <Route path="/exShortPage">
-            <div style={{ width: 640, margin: "auto", marginTop: 32, paddingBottom: 32 }}>
-              <h1 style={{marginTop:120}} >Name of Project</h1>
-              <h3>Highest Bid</h3>
-              <img src="data:image/png;base64,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" alt="" />
+            <div id="shortDiv" style={{ width: 640, margin: "auto", marginTop: 32, paddingBottom: 32 }}>
+              <h1 style={{marginTop:120}} >Bored Ape Yacht Club</h1>
+              {/* <img src="data:image/png;base64,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" alt="" /> */}
+              <img src="https://cdn.discordapp.com/attachments/989955302151581766/990515154330456075/unknown.png"></img>
+              <h3>Max Collection Offer: 82 ETH</h3>
+              <h3>Current Floor Price: 91.69 ETH</h3>
 
               <table id="shortTable">
                 <tr>
@@ -856,32 +858,36 @@ function App(props) {
                   <th>ID</th>
                   <th>Required Collateral</th>
                   <th>Premium</th>
-                  <th>Expire Date</th>
+                  <th>Expiry Date</th>
+                  <th>Max Offer</th>
                   <th>Short</th>
                 </tr>
                   <tr>
                     <td><img src="https://news.artnet.com/app/news-upload/2021/09/Yuga-Labs-Bored-Ape-Yacht-Club-4466.jpg" alt="" height="100"/></td>
                     <td>5</td>
-                    <td>1.2 ETH</td>
-                    <td>0.2 ETH</td>
-                    <td>7/05/22</td>
-                    <td><a href="">[x]</a></td>
+                    <td>137.5 ETH</td>
+                    <td>2 ETH</td>
+                    <td>7/31/22</td>
+                    <td>82 ETH</td>
+                    <td><button>Select</button></td>
                   </tr>
                   <tr>
                     <td><img src="https://img.seadn.io/files/3bb7b9cf3a412b5116e2ee9396c2e4fd.png?fit=max&w=600" alt="" height="100"/></td>
                     <td>72</td>
-                    <td>1.5 ETH</td>
-                    <td>0.38 ETH</td>
-                    <td>8/12/22</td>
-                    <td><a href="">[x]</a></td>
+                    <td>137.5 ETH</td>
+                    <td>2.5 ETH</td>
+                    <td>7/31/22</td>
+                    <td>84 ETH</td>
+                    <td><button>Select</button></td>
                   </tr>
                   <tr>
                     <td><img src="https://img.seadn.io/files/832d4989ba7fb65f7b15d8f9ec9e5bd7.png?fit=max&w=600" alt="" height="100"/></td>
                     <td>12</td>
-                    <td>2.32 ETH</td>
-                    <td>0.7 ETH</td>
-                    <td>9/02/22</td>
-                    <td><a href="">[x]</a></td>
+                    <td>137.5 ETH</td>
+                    <td>2.7 ETH</td>
+                    <td>7/31/22</td>
+                    <td>85 ETH</td>
+                    <td><button>Select</button></td>
                   </tr>
  
               </table>
@@ -889,45 +895,50 @@ function App(props) {
           </Route>
 
           <Route path="/exDashboard">
-            <div>
+            <div id="dashboardDiv" style={{ width: 640, margin: "auto", marginTop: 32, paddingBottom: 32 }}>
               <h1>My Positions</h1>
-              <table>
+              <table id="dashboardTable">
                 <tr>
                   <th>Image</th>
+                  <th>ID</th>
                   <th>Collection</th>
                   <th>Status</th>
-                  <th>Expires</th>
                   <th>Collateral</th>
-                  <th>Permium</th>
+                  <th>Premium</th>
+                  <th>Expiry</th>
                   <th>Action</th>
                 </tr>
                 <tr>
                   <td><img src="https://news.artnet.com/app/news-upload/2021/09/Yuga-Labs-Bored-Ape-Yacht-Club-4466.jpg" alt="" height="100"/></td>
-                  <td>Board Apes</td>
+                  <td>5</td>
+                  <td>Bored Ape Yacht Club</td>
                   <td>Listed</td>
-                  <td>07/05/22</td>
-                  <td>1.2 ETH</td>
-                  <td>0.2 ETH</td>
-                  <td><a href="">cancel</a></td>
+                  <td>137.5 ETH</td>
+                  <td>2 ETH</td>
+                  <td>07/31/22</td>
+                  <td><button>Cancel Listing</button></td>
 
                 </tr>
                 <tr>
                   <td><img src="https://img.seadn.io/files/6f22e171aed5b31197ce2518a1e7f708.png?fit=max&w=600" alt="" height="100"/></td>
+                  <td>638</td>
                   <td>Goblin Town</td>
                   <td>Shorted</td>
-                  <td>08/18/22</td>
-                  <td>1.6 ETH</td>
-                  <td>0.7 ETH</td>
-                  <td>---</td>
+                  <td>5.4 ETH</td>
+                  <td>0.3 ETH</td>                  
+                  <td>07/31/22</td>
+                  <td><button>Return NFT</button></td>
                 </tr>
                 <tr>
                   <td><img src="https://openseauserdata.com/files/aa18cbf0cc77180ba7d538d81f1d2ff5.svg" alt="" height="100"/></td>
+                  <td>7867</td>
                   <td>OnChainMonkey</td>
                   <td>Late</td>
+                  <td>2.5 ETH</td>
+                  <td>0.2 ETH</td>
                   <td>06/25/22</td>
-                  <td>2.2 ETH</td>
-                  <td>0.5 ETH</td>
-                  <td><a href="">Collect Collateral</a></td>
+
+                  <td><button>Collect Collateral</button></td>
                 </tr>
               </table>
             </div>
@@ -1103,11 +1114,11 @@ function App(props) {
           <Col span={24}>
             {
               /*  if the local provider has a signer, let's show the faucet:  */
-              faucetAvailable ? (
-                <Faucet localProvider={localProvider} price={price} ensProvider={mainnetProvider} />
-              ) : (
-                ""
-              )
+              // faucetAvailable ? (
+              //   <Faucet localProvider={localProvider} price={price} ensProvider={mainnetProvider} />
+              // ) : (
+              //   ""
+              // )
             }
           </Col>
         </Row>
