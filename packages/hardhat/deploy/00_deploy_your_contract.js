@@ -40,6 +40,7 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
   });
   const Dyve = await ethers.getContract("Dyve", deployer);
 
+  await Dyve.testSetup();
   // Getting a previously deployed contract
   // const yourCollectible = await ethers.getContract("YourCollectible", deployer);
 
