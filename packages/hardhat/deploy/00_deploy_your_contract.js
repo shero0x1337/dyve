@@ -14,8 +14,27 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
     log: true,
   });
 
+  await deploy("TestToken", {
+    from: deployer,
+    log: true,
+  });
+  const TestToken = await ethers.getContract("TestToken", deployer);
+
+  await deploy("MarketPlace", {
+    from: deployer,
+    log: true,
+  });
+  const Marketplace = await ethers.getContract("MarketPlace", deployer);
+
+  await deploy("Dyve", {
+    from: deployer,
+    args:[TestToken.address, Marketplace.address],
+    log: true,
+  });
+  const Dyve = await ethers.getContract("Dyve", deployer);
+
   // Getting a previously deployed contract
-  const yourCollectible = await ethers.getContract("YourCollectible", deployer);
+  // const yourCollectible = await ethers.getContract("YourCollectible", deployer);
 
   // ToDo: Verify your contract with Etherscan for public chains
   // if (chainId !== "31337") {
@@ -37,4 +56,4 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-module.exports.tags = ["YourCollectible"];
+module.exports.tags = ["Dyve"];
