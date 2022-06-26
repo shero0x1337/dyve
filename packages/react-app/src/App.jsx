@@ -852,26 +852,34 @@ function App(props) {
 
               <table>
                 <tr>
+                  <th>Image</th>
                   <th>ID</th>
                   <th>Required Collateral</th>
+                  <th>Premium</th>
                   <th>Expire Date</th>
                   <th>Short</th>
                 </tr>
                   <tr>
+                    <td><img src="https://news.artnet.com/app/news-upload/2021/09/Yuga-Labs-Bored-Ape-Yacht-Club-4466.jpg" alt="" height="100"/></td>
                     <td>5</td>
                     <td>1.2 ETH</td>
+                    <td>0.2 ETH</td>
                     <td>7/05/22</td>
                     <td><a href="">[x]</a></td>
                   </tr>
                   <tr>
+                    <td><img src="https://img.seadn.io/files/3bb7b9cf3a412b5116e2ee9396c2e4fd.png?fit=max&w=600" alt="" height="100"/></td>
                     <td>72</td>
                     <td>1.5 ETH</td>
+                    <td>0.38 ETH</td>
                     <td>8/12/22</td>
                     <td><a href="">[x]</a></td>
                   </tr>
                   <tr>
+                    <td><img src="https://img.seadn.io/files/832d4989ba7fb65f7b15d8f9ec9e5bd7.png?fit=max&w=600" alt="" height="100"/></td>
                     <td>12</td>
                     <td>2.32 ETH</td>
+                    <td>0.7 ETH</td>
                     <td>9/02/22</td>
                     <td><a href="">[x]</a></td>
                   </tr>
@@ -885,27 +893,40 @@ function App(props) {
               <h1>My Positions</h1>
               <table>
                 <tr>
+                  <th>Image</th>
                   <th>Collection</th>
                   <th>Status</th>
                   <th>Expires</th>
+                  <th>Collateral</th>
+                  <th>Permium</th>
                   <th>Action</th>
                 </tr>
                 <tr>
+                  <td><img src="https://news.artnet.com/app/news-upload/2021/09/Yuga-Labs-Bored-Ape-Yacht-Club-4466.jpg" alt="" height="100"/></td>
                   <td>Board Apes</td>
                   <td>Listed</td>
-                  <td>06/27/22</td>
+                  <td>07/05/22</td>
+                  <td>1.2 ETH</td>
+                  <td>0.2 ETH</td>
                   <td><a href="">cancel</a></td>
+
                 </tr>
                 <tr>
+                  <td><img src="https://img.seadn.io/files/6f22e171aed5b31197ce2518a1e7f708.png?fit=max&w=600" alt="" height="100"/></td>
                   <td>Goblin Town</td>
                   <td>Shorted</td>
                   <td>08/18/22</td>
+                  <td>1.6 ETH</td>
+                  <td>0.7 ETH</td>
                   <td>---</td>
                 </tr>
                 <tr>
-                  <td>Birbies</td>
+                  <td><img src="https://openseauserdata.com/files/aa18cbf0cc77180ba7d538d81f1d2ff5.svg" alt="" height="100"/></td>
+                  <td>OnChainMonkey</td>
                   <td>Late</td>
                   <td>06/25/22</td>
+                  <td>2.2 ETH</td>
+                  <td>0.5 ETH</td>
                   <td><a href="">Collect Collateral</a></td>
                 </tr>
               </table>
