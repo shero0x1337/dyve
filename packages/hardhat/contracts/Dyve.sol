@@ -92,4 +92,24 @@ contract Dyve is IDyve, ERC721{
     function cancel(bytes32 _hash) external override{
         Orders._cancel(orderLookup[_hash]);
     }
+
+    function testSetup() external{
+        Orders.Order memory order1 = Orders.Order(msg.sender, address(this), 0, 1 ether, block.timestamp+4000, 0.5 ether, Orders.STATUS.LISTED);
+        Orders.Order memory order2 = Orders.Order(msg.sender, address(this), 1, 1.2 ether, block.timestamp+2500, 0.5 ether, Orders.STATUS.SHORTED);
+        Orders.Order memory order3 = Orders.Order(msg.sender, address(this), 2, 0.8 ether, block.timestamp+5327, 0.5 ether, Orders.STATUS.CLOSED);
+
+        orderLookup[keccak256("1")] = order1;
+        ordersByCollection[address(this)].push(keccak256("1"));
+        ordersByLender[msg.sender].push(keccak256("1"));
+
+        orderLookup[keccak256("2")] = order2;
+        ordersByCollection[address(this)].push(keccak256("2"));
+        ordersByLender[msg.sender].push(keccak256("2"));
+
+        orderLookup[keccak256("3")] = order3;
+        ordersByCollection[address(this)].push(keccak256("3"));
+        ordersByLender[msg.sender].push(keccak256("3"));
+
+
+    }
 }

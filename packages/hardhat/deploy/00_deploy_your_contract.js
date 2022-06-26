@@ -1,5 +1,7 @@
 // deploy/00_deploy_your_contract.js
 
+const START_NFT_PRICE = 10;
+
 const { ethers } = require("hardhat");
 
 module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
@@ -7,25 +9,30 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
   const { deployer } = await getNamedAccounts();
   const chainId = await getChainId();
 
-  await deploy("YourCollectible", {
-    // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
-    from: deployer,
-    // args: [ "Hello", ethers.utils.parseEther("1.5") ],
-    log: true,
-  });
-
   await deploy("TestToken", {
     from: deployer,
     log: true,
   });
   const TestToken = await ethers.getContract("TestToken", deployer);
 
+  await deploy("TestNFT", {
+    from: deployer,
+    log: true,
+  });
+  const TestNFT = await ethers.getContract("TestNFT", deployer);
+
   await deploy("Marketplace", {
     from: deployer,
     log: true,
   });
   const Marketplace = await ethers.getContract("Marketplace", deployer);
+  await Marketplace.changePrice(TestNFT.address, START_NFT_PRICE);
+  console.log((await TestToken.totalSupply()).toString());
 
+  await TestToken.mintMe();
+  await TestToken.transfer(Marketplace.address, ethers.utils.parseEther('100'));
+
+  console.log((await TestToken.balanceOf(Marketplace.address)).toString());
   await deploy("Dyve", {
     from: deployer,
     args:[TestToken.address, Marketplace.address],
