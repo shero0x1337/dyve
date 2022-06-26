@@ -20,11 +20,11 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
   });
   const TestToken = await ethers.getContract("TestToken", deployer);
 
-  await deploy("Marketplace", {
+  await deploy("MarketPlace", {
     from: deployer,
     log: true,
   });
-  const Marketplace = await ethers.getContract("Marketplace", deployer);
+  const Marketplace = await ethers.getContract("MarketPlace", deployer);
 
   await deploy("Dyve", {
     from: deployer,
