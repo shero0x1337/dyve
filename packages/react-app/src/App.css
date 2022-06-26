@@ -7,6 +7,16 @@ body {
   /* background-color:#abd7eb !important; */
 }
 
+.row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.block {
+  width: 100px;
+}
+
 .loader {
   position: absolute;
   top: 22%;
