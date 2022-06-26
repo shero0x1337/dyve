@@ -9,7 +9,7 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 
 import "hardhat/console.sol";
 
-contract YourCollectible is
+contract YourCollectibleDetail is
     ERC721,
     ERC721Enumerable,
     ERC721URIStorage,
@@ -19,13 +19,13 @@ contract YourCollectible is
 
     Counters.Counter private _tokenIdCounter;
 
-    constructor() ERC721("YourCollectible", "YCB") {}
+    constructor() ERC721("YourCollectibleDetail", "YCBD") {}
 
     function _baseURI() internal pure override returns (string memory) {
-        return "https://ipfs.io/ipfs/";
+        return "https://ipfs.io/ipfs/ipfs2/";
     }
 
-    function mintItem(address to, string memory uri) public returns (uint256) {
+    function mintItem2(address to, string memory uri) public returns (uint256) {
         _tokenIdCounter.increment();
         uint256 tokenId = _tokenIdCounter.current();
         _safeMint(to, tokenId);

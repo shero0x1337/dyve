@@ -526,17 +526,9 @@ function App(props) {
       name: "BAYC",
       attributes: [
         {
-          trait_type: "BackgroundColor",
-          value: "green",
-        },
-        {
-          trait_type: "Eyes",
-          value: "googly",
-        },
-        {
-          trait_type: "Stamina",
-          value: 42,
-        },
+          trait_type: "collateral",
+          value: 100,
+        }
       ],
     },
     2: {
@@ -546,17 +538,9 @@ function App(props) {
       name: "Azuki",
       attributes: [
         {
-          trait_type: "BackgroundColor",
-          value: "blue",
-        },
-        {
-          trait_type: "Eyes",
-          value: "googly",
-        },
-        {
-          trait_type: "Stamina",
-          value: 38,
-        },
+          trait_type: "collateral",
+          value: 20,
+        }
       ],
     },
     3: {
@@ -566,17 +550,9 @@ function App(props) {
       name: "Rhino",
       attributes: [
         {
-          trait_type: "BackgroundColor",
-          value: "pink",
-        },
-        {
-          trait_type: "Eyes",
-          value: "googly",
-        },
-        {
-          trait_type: "Stamina",
-          value: 22,
-        },
+          trait_type: "collateral",
+          value: 10,
+        }
       ],
     },
     4: {
@@ -586,17 +562,9 @@ function App(props) {
       name: "Fish",
       attributes: [
         {
-          trait_type: "BackgroundColor",
-          value: "blue",
-        },
-        {
-          trait_type: "Eyes",
-          value: "googly",
-        },
-        {
-          trait_type: "Stamina",
-          value: 15,
-        },
+          trait_type: "collateral",
+          value: 1,
+        }
       ],
     },
     5: {
@@ -606,17 +574,9 @@ function App(props) {
       name: "Flamingo",
       attributes: [
         {
-          trait_type: "BackgroundColor",
-          value: "black",
-        },
-        {
-          trait_type: "Eyes",
-          value: "googly",
-        },
-        {
-          trait_type: "Stamina",
-          value: 6,
-        },
+          trait_type: "collateral",
+          value: 2,
+        }
       ],
     },
     6: {
@@ -626,20 +586,14 @@ function App(props) {
       name: "Godzilla",
       attributes: [
         {
-          trait_type: "BackgroundColor",
-          value: "orange",
-        },
-        {
-          trait_type: "Eyes",
-          value: "googly",
-        },
-        {
-          trait_type: "Stamina",
-          value: 99,
-        },
+          trait_type: "collateral",
+          value: 10,
+        }
       ],
     },
   };
+
+  
 
   const mintItem = async () => {
     // upload to ipfs
@@ -664,6 +618,18 @@ function App(props) {
               " gwei",
           );
         }
+      },
+    );
+  };
+
+  const shortItem = async () => {
+    // upload to ipfs
+    const result = tx(
+      writeContracts &&
+        writeContracts.YourCollectible &&
+        writeContracts.YourCollectible.shortItem(address),
+      update => {
+        console.log("📡 Selling Transaction Update:", update);
       },
     );
   };
@@ -752,7 +718,7 @@ function App(props) {
                   mintItem();
                 }}
               >
-                    <span style={{ marginRight: 8 }} role="img" aria-label="Borrow">
+                    <span style={{ marginRight: 8 }} role="img" aria-label="Short Item!">
                     📉
               </span>
                 SHORT
@@ -841,7 +807,15 @@ function App(props) {
                       </Card>
 
                       <div>
-                        <Button danger>
+                        <Button 
+                        disabled={minting}
+                        shape="round"
+                        size="large"
+                        style={{height:'100px',width:'400px'}}
+                        onClick={() => {
+                          shortItem();
+                        }}
+                        danger>
                           Short
                         </Button>
                       </div>
