@@ -283,14 +283,14 @@ function App(props) {
   //
   // const yourBalance = balance && balance.toNumber && balance.toNumber();
   // const [yourCollectibles, setYourCollectibles] = useState();
-    const testData = [1,2,3,4,5];
+    let testData = [1,2,3,4,5];
 
-  // useEffect(() => {
-  //   const updateLists = async()=>{
-  //     testData.forEach(x=>{
-  //       x=x+1;
-  //     })
-  //   }
+  useEffect(() => {
+    const updateLists = async()=>{
+      testData = [2,3,4,5,6]
+    }
+    updateLists();
+    });
   //   const updateYourCollectibles = async () => {
   //     const collectibleUpdate = [];
   //     for (let tokenIndex = 0; tokenIndex < balance; tokenIndex++) {
