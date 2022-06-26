@@ -895,7 +895,7 @@ function App(props) {
           </Route>
 
           <Route path="/exDashboard">
-            <div id="dashboardDiv" style={{ width: 640, margin: "auto", marginTop: 32, paddingBottom: 32 }}>
+            <div id="dashboardDiv" style={{ margin: "auto", marginTop: 32, paddingBottom: 32 }}>
               <h1>My Positions</h1>
               <table id="dashboardTable">
                 <tr>
