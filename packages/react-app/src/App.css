@@ -39,8 +39,20 @@ body {
 
 #shortTable {
   width: 100%;
+  border-radius: 5px;
+
+  border-collapse: collapse;
+  border-radius: 1em;
+  overflow: hidden;
 }
 
 #shortTable th {
   padding: 20px;
+}
+
+#shortTable th,
+#shortTable td {
+  padding: 1em;
+  background: lightblue;
+  border-bottom: 2px solid white;
 }
